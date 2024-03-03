@@ -4,6 +4,7 @@ const loadPosts = async () => {
     // console.log(data.posts)
     displayPosts(data.posts);
 }
+
 const displayPosts = (posts) => {
     const postContainer = document.getElementById('post-container');
     
@@ -44,7 +45,7 @@ const displayPosts = (posts) => {
                                 </div>  
                             </div>
                             <div>
-                                <button onclick = "getReadPost('${post.title}', '${post.view_count}')"><img src="./images/email .svg" alt=""></button>
+                                <button id="button" onclick = "getReadPost('${post.title}', '${post.view_count}')"><img src="./images/email .svg" alt=""></button>
                             </div>
                         </div>
                     </div>
@@ -52,7 +53,7 @@ const displayPosts = (posts) => {
             
         `;
 
-        postContainer.appendChild(card)
+        postContainer.appendChild(card);
         
     });
 }
@@ -71,20 +72,50 @@ const getReadPost = (title, count) => {
             <p id="view-count" class="font-inter">${count}</p>
         </div>
     `;
-    postTitle.appendChild(div);
+    postTitle.appendChild(div);  
+}
 
+const loadLatestPost = async () => {
+    const responsible = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
+    const latestPosts = await responsible.json();
+    console.log(latestPosts);
+
+    displayLatestPosts(latestPosts);
     
 }
 
-// function totalReadCount (){
+const displayLatestPosts = (latestPosts) => {
+    const latestPostsContainer = document.getElementById('latest-post-container');
     
-//     const readPost = document.getElementById('read-post');
+    latestPosts.forEach(latestPost => {
+        console.log(latestPost);
+        const newPost = document.createElement('div');
+        newPost.innerHTML = `
+        <div class="card p-6 border-2 border-[#12132d26] rounded-3xl">
+            <div><img src="${latestPost.cover_image}" alt="" class="rounded-2xl mb-6"></div>
+            <div class="flex flex-row gap-2 mb-4">
+                <img src="./images/calendar.svg"  class="h-6 w-6" alt="">
+                <p> ${latestPost.author.posted_date}</p>
+            </div>
+            <h3 class="font-bold text-lg mb-3">${latestPost.title}</h3>
+            <p class="text-[#12132d99] mb-4">${latestPost.description}</p>
+            <div class="flex flex-row gap-4">
+                <div>
+                    <img src="${latestPost.profile_image}" alt="" class="h-10 w-10 rounded-full">
+                </div>
+                <div>
+                    <p class="font-bold mb-2">${latestPost.author.name}</p>
+                    <p class="text-[#12132d99] text-sm">${latestPost.author.designation}</p>
+                </div>
+            </div>
+        </div>
+    `;
+    latestPostsContainer.appendChild(newPost);
     
-//     const readPostCount = parseInt(readPost.innerText);
-//     readPostCount = readPostCount + 1;
-//     readPost.innerText = readPostCount;
-//     console.log(readPost);
-// }
+    });
+    
+}
 
-loadPosts()
-displayPosts()
+loadPosts();
+loadLatestPost();
+displayLatestPosts()
