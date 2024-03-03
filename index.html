@@ -94,15 +94,15 @@
         </div>
     </section>
    
-    <!-- news category section -->
+    <!-- Posts category section -->
     <section class="container mx-auto mt-10 lg:mt-24">
         <div class="text-center">
             <h2 class="font-mulish text-4xl font-semibold lg:font-black mb-6">Let’s Discuss</h2>
             <p class="w-full lg:w-[690px] mx-auto font-inter text-lg text-[#12132d99] mb-12">Yes, you can run unit tests and view the results directly within the app. The integrated testing features allow for a streamlined.</p>
         </div>
-        <div id="news-container" class="flex flex-col lg:flex-row gap-6 font-inter">
-            <div>
-                <div id="news-card" class="flex flex-col lg:flex-row gap-6 bg-[#F3F3F5] p-10 rounded-2xl mb-6">
+        <div id="post-container" class="flex flex-col gap-6 font-inter">
+            <!-- <div>
+                <div id="post-card" class=" bg-[#F3F3F5] p-10 rounded-2xl mb-6">
                     <div class="relative">
                         <div class="bg-slate-50 rounded-lg h-16 w-16 relative">
                             <div class="bg-green-800 rounded-full h-4 w-4 absolute top-0 right-0"></div>
@@ -137,24 +137,26 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="title bg-[#F3F3F5] p-6 rounded-2xl font-mulish">
-                <div class="flex flex-row justify-between mb-4">
-                    <div><h3 class="text-xl font-bold">Title</h3></div>
-                    <div class="flex flex-row justify-between font-inter">
-                        <img src="./images/read.svg" alt="" class="h-6 w-6">
-                        <p class="text-[#12132d99]">Mark as read <span>(4)</span></p>
+            </div> -->
+            <div>
+                <div class="title bg-[#F3F3F5] p-6 rounded-2xl font-mulish">
+                    <div class="flex flex-row justify-between mb-4">
+                        <div><h3 class="text-xl font-bold">Title</h3></div>
+                        <div class="flex flex-row justify-between font-inter">
+                            <img src="./images/read.svg" alt="" class="h-6 w-6">
+                            <p class="text-[#12132d99]">Mark as read <span>(<span id="read-post">0</span>)</span></p>
+                        </div>
                     </div>
+                    <div id="post-title">
+                        <!-- <div class="my-4 w-2/3">
+                            <h2  class="font mulish font-semibold"></h2>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <img src="./images/eye-icon.svg" alt="" class="h-7 w-7">
+                            <p id="view-count" class="font-inter"></p>
+                        </div> -->
+                    </div>   
                 </div>
-                <div class="flex flex-row justify-between items-center bg-white p-4 rounded-2xl mb-5">
-                    <div class="my-4 w-2/3">
-                        <h2 class="font mulish font-semibold">10 Kids Unaware of Their Halloween Costume</h2>
-                    </div>
-                    <div class="flex flex-row gap-2">
-                        <img src="./images/eye-icon.svg" alt="" class="h-7 w-7">
-                        <p class="font-inter">1560</p>
-                    </div>
-                </div>   
             </div>
         </div>
 
