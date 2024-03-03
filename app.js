@@ -6,10 +6,12 @@ const loadPosts = async () => {
 }
 const displayPosts = (posts) => {
     const postContainer = document.getElementById('post-container');
+    
     posts.forEach(post => {
         // console.log(post);
         const card = document.createElement('div');
         
+        card.className = 'flex flex-col lg:flex-row flex-1 gap-6 font-inter ';
         card.innerHTML = `
             <div id="post-card" class="flex flex-col lg:flex-row gap-6 bg-[#F3F3F5] p-10 rounded-2xl mb-6">
                     <div class="relative">
@@ -47,17 +49,19 @@ const displayPosts = (posts) => {
                         </div>
                     </div>
             </div>
+            
         `;
 
         postContainer.appendChild(card)
+        
     });
 }
 
 const getReadPost = (title, count) => {
     const postTitle = document.getElementById('post-title');
-
+    
     const div = document.createElement('div');
-    div.className = 'flex flex-row justify-between items-center bg-white p-4 rounded-2xl mb-5';
+    div.className = 'flex flex-col lg:flex-row justify-between items-center bg-white p-4 rounded-2xl mb-5';
     div.innerHTML = `
         <div class="my-4 w-2/3">
             <h2 id="post-title" class="font mulish font-semibold">${title}</h2>
@@ -68,13 +72,7 @@ const getReadPost = (title, count) => {
         </div>
     `;
     postTitle.appendChild(div);
-    
-        const readPost = document.getElementById('read-post');
-    
-        const readPostCount = parseInt(readPost.innerText);
-        readPostCount = readPostCount + 1;
-        readPost.innerText = readPostCount;
-        console.log(readPost);
+
     
 }
 
