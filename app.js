@@ -1,11 +1,15 @@
-const loadPosts = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+const inputText = document.getElementById('input-field');
+
+const loadPosts = async (categoryName='comedy') => {
+    handleSpinner('block');
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`);
     const data = await res.json();
-    // console.log(data.posts)
+    
     displayPosts(data.posts);
 }
 
 const displayPosts = (posts) => {
+    handleSpinner('none');
     const postContainer = document.getElementById('post-container');
     postContainer.innerText = '';
     posts.forEach(post => {
@@ -59,9 +63,9 @@ const displayPosts = (posts) => {
             
         `;
 
-        postContainer.appendChild(card);
-        
+        postContainer.appendChild(card);   
     });
+    
 }
 
 const getReadPost = (title, count) => {
@@ -84,7 +88,6 @@ const getReadPost = (title, count) => {
 const loadLatestPost = async () => {
     const responsible = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const latestPosts = await responsible.json();
-    
     displayLatestPosts(latestPosts);  
 }
 
@@ -117,26 +120,20 @@ const displayLatestPosts = (latestPosts) => {
     });  
 }
 
-const getCategory = async(categoryName) => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`);
-    const categories = await res.json();
-    console.log(categories); 
-
-    loadPosts(categories)
+const handleSearch = () =>{
     // const inputText = document.getElementById('input-field');
-    // const searchCategory = inputText.value;
+    const categoryName = inputText.value;
+    // console.log(categoryName);
+    loadPosts(categoryName);
     
  }
 
- const handleSearch = () =>{
-    const inputText = document.getElementById('input-field');
-    const categoryName = inputText.value;
-
-    getCategory(categoryName)
- }
+ const handleSpinner = (status) => {
+    document.getElementById("spinner").style.display = status;
+ };
 
 
 
-loadPosts();
+loadPosts(categoryName='comedy');
 loadLatestPost();
 // displayLatestPosts()
