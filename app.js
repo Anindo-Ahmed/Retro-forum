@@ -95,23 +95,24 @@ const displayLatestPosts = (latestPosts) => {
             <div><img src="${latestPost.cover_image}" alt="" class="rounded-2xl mb-6"></div>
             <div class="flex flex-row gap-2 mb-4">
                 <img src="./images/calendar.svg"  class="h-6 w-6" alt="">
-                <p> ${latestPost.author.posted_date}</p>
+                <p> ${(latestPost.author.posted_date) ? latestPost.author.posted_date : 'No Publish Date'}</p>
             </div>
             <h3 class="font-bold text-lg mb-3">${latestPost.title}</h3>
             <p class="text-[#12132d99] mb-4">${latestPost.description}</p>
             <div class="flex flex-row gap-4">
                 <div>
-                    <img src="${latestPost.profile_image}" alt="" class="h-10 w-10 rounded-full">
+                    <img src="${latestPost.profile_image}" alt="" class="h-16 w-16 rounded-full">
                 </div>
                 <div>
                     <p class="font-bold mb-2">${latestPost.author.name}</p>
-                    <p class="text-[#12132d99] text-sm">${latestPost.author.designation}</p>
+                    <p class="text-[#12132d99] text-sm">${(latestPost.author.designation) ? latestPost.author.designation : 'Unknown'}</p>
                 </div>
             </div>
         </div>
     `;
     latestPostsContainer.appendChild(newPost);
-    
+        
+
     });
     
 }
