@@ -7,18 +7,24 @@ const loadPosts = async () => {
 
 const displayPosts = (posts) => {
     const postContainer = document.getElementById('post-container');
-    
+    postContainer.innerText = '';
     posts.forEach(post => {
+        let activity = '';
+        if(post.isActive){
+           activity = `<div id="activity" class="bg-green-900 rounded-full h-4 w-4 absolute -top-2 -right-2"></div>`;
+        }
+        else{
+            activity = `<div id="activity" class="bg-rose-600 rounded-full h-4 w-4 absolute -top-2 -right-2"></div>`;
+        }
         // console.log(post);
         const card = document.createElement('div');
-        
         card.className = 'flex flex-col lg:flex-row flex-1 gap-6 font-inter ';
         card.innerHTML = `
             <div id="post-card" class="flex flex-col lg:flex-row gap-6 bg-[#F3F3F5] p-10 rounded-2xl mb-6">
                     <div class="relative">
                         <div class="bg-slate-50 rounded-lg h-16 w-16 relative">
-                            <div class="bg-green-800 rounded-full h-4 w-4 absolute top-0 right-0"></div>
-                            <img src="${post.image}" alt="">
+                            ${activity}
+                            <img src="${post.image}" alt="" class="rounded-lg">
                         </div> 
                     </div>
                     <div>
@@ -78,17 +84,13 @@ const getReadPost = (title, count) => {
 const loadLatestPost = async () => {
     const responsible = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const latestPosts = await responsible.json();
-    console.log(latestPosts);
-
-    displayLatestPosts(latestPosts);
     
+    displayLatestPosts(latestPosts);  
 }
 
 const displayLatestPosts = (latestPosts) => {
-    const latestPostsContainer = document.getElementById('latest-post-container');
-    
+    const latestPostsContainer = document.getElementById('latest-post-container'); 
     latestPosts.forEach(latestPost => {
-        console.log(latestPost);
         const newPost = document.createElement('div');
         newPost.innerHTML = `
         <div class="card p-6 border-2 border-[#12132d26] rounded-3xl">
@@ -112,11 +114,29 @@ const displayLatestPosts = (latestPosts) => {
     `;
     latestPostsContainer.appendChild(newPost);
         
-
-    });
-    
+    });  
 }
+
+const getCategory = async(categoryName) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`);
+    const categories = await res.json();
+    console.log(categories); 
+
+    loadPosts(categories)
+    // const inputText = document.getElementById('input-field');
+    // const searchCategory = inputText.value;
+    
+ }
+
+ const handleSearch = () =>{
+    const inputText = document.getElementById('input-field');
+    const categoryName = inputText.value;
+
+    getCategory(categoryName)
+ }
+
+
 
 loadPosts();
 loadLatestPost();
-displayLatestPosts()
+// displayLatestPosts()
