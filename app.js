@@ -22,7 +22,7 @@ const displayPosts = (posts) => {
         }
         // console.log(post);
         const card = document.createElement('div');
-        card.className = 'flex flex-col  font-inter';
+        card.className = 'flex flex-col font-inter';
         card.innerHTML = `
             <div id="post-card" class="flex flex-col lg:flex-row gap-6 bg-[#F3F3F5] p-10 rounded-2xl mb-6">
                     <div class="relative">
@@ -73,7 +73,7 @@ setTimeout(() =>{
 
 const getReadPost = (title, count) => {
     const postTitle = document.getElementById('post-title');
-    
+    const readPost = document.getElementById('read-post');
     const div = document.createElement('div');
     div.className = 'flex flex-col lg:flex-row justify-between items-center bg-white p-4 rounded-2xl mb-5';
     div.innerHTML = `
@@ -85,7 +85,11 @@ const getReadPost = (title, count) => {
             <p id="view-count" class="font-inter">${count}</p>
         </div>
     `;
-    postTitle.appendChild(div);  
+    postTitle.appendChild(div);
+    
+    let readCount = parseInt(readPost.innerText);
+    readCount = readCount + 1;
+    readPost.innerText = readCount;
 }
 
 const loadLatestPost = async () => {
