@@ -24,7 +24,7 @@ const displayPosts = (posts) => {
         const card = document.createElement('div');
         card.className = 'flex flex-col font-inter';
         card.innerHTML = `
-            <div id="post-card" class="flex flex-col lg:flex-row gap-6 bg-[#F3F3F5] p-10 rounded-2xl mb-6">
+            <div id="post-card" class="flex flex-col lg:flex-row gap-6 bg-[#F3F3F5] p-7 lg:p-10 rounded-2xl mb-6">
                     <div class="relative">
                         <div class="bg-slate-50 rounded-lg h-16 w-16 relative">
                             ${activity}
@@ -32,24 +32,24 @@ const displayPosts = (posts) => {
                         </div> 
                     </div>
                     <div>
-                        <div class="flex flex-row lg:gap-5">
-                            <p><span># </span>${post.category}</p>
+                        <div class="flex flex-row gap-4 lg:gap-5">
+                            <p><span class="mr-1">#</span>${post.category}</p>
                             <p><span>Author :</span> ${post.author.name}</p>
                         </div>
                         <h2 class="font mulish text-xl font-bold my-4">${post.title}</h2>
                         <p class="text-[#12132d99] mb-5">${post.description}</p>
                         <hr class="border-dashed border-2 mb-5">
                         <div class="flex flex-row justify-between">
-                            <div class="flex flex-row gap-6">
-                                <div class="flex flex-row lg:gap-3">
+                            <div class="flex flex-row gap-4 lg:gap-6">
+                                <div class="flex flex-row gap-2 lg:gap-3">
                                     <img src="./images/message-icon.svg" alt="" class="h-7 w-7">
                                     <p>${post.comment_count}</p>
                                 </div>
-                                <div class="flex flex-row lg:gap-3">
+                                <div class="flex flex-row gap-2 lg:gap-3">
                                     <img src="./images/eye-icon.svg" alt="" class="h-7 w-7">
                                     <p>${post.view_count}</p>
                                 </div>
-                                <div class="flex flex-row lg:gap-3">
+                                <div class="flex flex-row gap-2 lg:gap-3">
                                     <img src="./images/clock-hour-icon.svg" alt="" class="h-7 w-7">
                                     <p>${post.posted_time}</p>
                                 </div>  
@@ -77,7 +77,7 @@ const getReadPost = (title, count) => {
     const div = document.createElement('div');
     div.className = 'flex flex-col lg:flex-row justify-between items-center bg-white p-4 rounded-2xl mb-5';
     div.innerHTML = `
-        <div class="my-4 lg:w-2/3">
+        <div class="my-4">
             <h2 id="post-title" class="font mulish font-semibold">${title}</h2>
         </div>
         <div class="flex flex-row gap-2">
