@@ -22,7 +22,7 @@ const displayPosts = (posts) => {
         }
         // console.log(post);
         const card = document.createElement('div');
-        card.className = 'flex flex-col lg:flex-row flex-1 gap-6 font-inter ';
+        card.className = 'flex flex-col  font-inter';
         card.innerHTML = `
             <div id="post-card" class="flex flex-col lg:flex-row gap-6 bg-[#F3F3F5] p-10 rounded-2xl mb-6">
                     <div class="relative">
@@ -64,9 +64,12 @@ const displayPosts = (posts) => {
         `;
 
         postContainer.appendChild(card);   
-    });
-    
+    }); 
 }
+
+setTimeout(() =>{
+    displayPosts(posts)
+},2000);
 
 const getReadPost = (title, count) => {
     const postTitle = document.getElementById('post-title');
@@ -74,7 +77,7 @@ const getReadPost = (title, count) => {
     const div = document.createElement('div');
     div.className = 'flex flex-col lg:flex-row justify-between items-center bg-white p-4 rounded-2xl mb-5';
     div.innerHTML = `
-        <div class="my-4 w-2/3">
+        <div class="my-4 lg:w-2/3">
             <h2 id="post-title" class="font mulish font-semibold">${title}</h2>
         </div>
         <div class="flex flex-row gap-2">
@@ -121,16 +124,13 @@ const displayLatestPosts = (latestPosts) => {
 }
 
 const handleSearch = () =>{
-    // const inputText = document.getElementById('input-field');
     const categoryName = inputText.value;
-    // console.log(categoryName);
-    loadPosts(categoryName);
-    
+    loadPosts(categoryName); 
  }
 
- const handleSpinner = (status) => {
+const handleSpinner = (status) => {
     document.getElementById("spinner").style.display = status;
- };
+};
 
 
 
